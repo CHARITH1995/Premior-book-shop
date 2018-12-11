@@ -1,0 +1,95 @@
+.head{
+    margin-bottom:-30px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+  .row.content {
+    height: 450px
+  }
+
+  .row ul li{
+    font-weight:100;
+    color: black;
+   
+  }
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+    display: table;
+}
+  .well{
+    margin:1px;
+    background-color:transparent;
+  }
+  .btn{
+    margin-left: 10px;
+   height:35px;
+    width:65px;
+  }
+  .buttonlists{
+    margin-left:180px;
+    margin-top: 20px;
+    border-left:10px;
+  }
+
+  .attribute{
+    font-size: 15px;
+    color: #f4511e;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+      
+  }
+ .list{
+     margin:none;
+ }
+ .custlogin{
+     
+    padding-bottom:5px;
+     padding-top:5px;
+     border-radius:5px;
+     font-style: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial, sans-serif';
+    font-weight: 500;
+    
+ }
+ p{
+     padding: 5px;
+ }
+  
+  .sidenav {
+    background-color:white;
+    height:700px;
+    margin:0;
+   
+  }
+  .form-horizontal{
+      margin-left:-20px;
+  }
+  .buttonlist{
+      margin-left:-10px;
+  }
+.control-label{
+    margin-bottom:2px;
+}
+  .custlogin{
+    text-align: left;
+  }
+  
+
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+  }
+.well ul li{
+    list-style-type:none;
+    
+}
+

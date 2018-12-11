@@ -1,0 +1,15 @@
+.jumbotron {
+    margin-top:50px;
+    background-color: #f4511e;
+    background-image: url("/assets/1.png");
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+}
+h1{
+    background-color: black;
+}
+.jumbotron p{
+    color:black;
+    font-weight: bold;
+}
