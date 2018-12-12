@@ -1,13 +1,13 @@
 const mongoose= require('mongoose');
 const Schema = mongoose.Schema;
 
-const Books= new Schema({
+const Upcomingbooks = new Schema({
     name:{
         type:String,
         require:'name field cant be empty',
         unique:true
     },
-    empname:{
+    supname:{
         type:String,
         require:'name field cant be empty',
         unique:true
@@ -17,6 +17,10 @@ const Books= new Schema({
         require:'author field is required'
 
     },
+    publish_year:{
+        type:String,
+        require:'publish year field cannot be empty'
+    },
     imagename:{
         type:String,
         require:'description is required'
@@ -25,17 +29,9 @@ const Books= new Schema({
         type:String,
         require:'description is required'
     },
-    PublishYear:{
-        type:String,
-        require:'publish year field cannot be empty'
-    },
     Publisher:{
         type:String,
         require:'pulisher cannot be empty'
-    },
-    Qty:{
-        type:Number,
-        require:'Qty is required'
     },
     type:{
         type:String,
@@ -44,10 +40,6 @@ const Books= new Schema({
     price:{
         type:Number,
         require:'price is required'
-    },
-    Status:{
-        type:String,
-        default:"unsold"
     },
     inserteddate:{
         type:Number,
@@ -61,6 +53,7 @@ const Books= new Schema({
         type:Number,
         require:'price is required'
     },
+   
 
 });
- module.exports=mongoose.model('Books',Books);
+ module.exports=mongoose.model('Upcominbooks',Upcomingbooks);

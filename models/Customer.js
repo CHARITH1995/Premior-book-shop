@@ -1,6 +1,5 @@
 const mongoose= require('mongoose');
 const Schema = mongoose.Schema;
-mongoose.set('usecreateIndexes',true);
 
 const Customers= new Schema({
     name:{
@@ -29,4 +28,6 @@ const Customers= new Schema({
    
 
 });
- module.exports=mongoose.model('Customers',Customers);
+
+const customer=mongoose.model('Customers',Customers);
+module.exports =customer

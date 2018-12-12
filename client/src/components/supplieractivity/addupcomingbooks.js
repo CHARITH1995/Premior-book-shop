@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import 'react-bootstrap';
-import './addbooks.css';
+import Navbar from './navbar';
+import '../Books/addbooks.css';
 
-class Addbook extends Component {
+class Addupcomingbook extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -89,11 +90,11 @@ class Addbook extends Component {
                 imagename: this.state.image,
                 price:this.state.price,
                 type:this.state.type,
+                supname:localStorage.fname,
                 publisher: this.state.publisher,
-                qty: this.state.qty
             }
             console.log(book)
-            fetch("http://localhost:4000/book/addimage", {
+            fetch("http://localhost:4000/book/upcomingaddimage", {
             method: "POST",
             mode: 'no-cors',
             headers: {
@@ -104,7 +105,7 @@ class Addbook extends Component {
             },
             body: fd
             });
-            fetch("http://localhost:4000/book/add", {
+            fetch("http://localhost:4000/book/addupcomingadd", {
                 method: 'post',
                 headers: {
                     "Content-Type": "application/json"
@@ -164,7 +165,7 @@ class Addbook extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="container">
-                        <h2 className="booktitle">Add new Book Details</h2>
+                        <h2 className="booktitle">Add a Upcoming Book Details</h2>
                         <form className="form-horizontal" >
                             <div className="form-group">
                                 <label className="control-label col-sm-2" for="email">Name:</label>
@@ -201,12 +202,6 @@ class Addbook extends Component {
                                 <label className="control-label col-sm-2" for="pwd">Publisher :</label>
                                 <div className="col-sm-8">
                                     <input type="text" className="form-control" id="Description" placeholder="Enter book publisher" name="publisher" rows="4" cols="5" value={this.state.publisher} onChange={this.handleChange} required />
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label className="control-label col-sm-2" for="pwd">Quantity :</label>
-                                <div className="col-sm-8">
-                                    <input type="number" className="form-control" id="qty" placeholder="Enter book quantity" name="qty" value={this.state.qty} onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -250,36 +245,11 @@ class Addbook extends Component {
             </div>
         );
     }
-    navbar() {
-        return (
-            <div>
-                <nav className="navbar navbar-default navbar-fixed-top">
-                    <div className="container">
-                        <div className="navbar-header">
-                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                            </button>
-                            <a className="navbar-brand" href="/">PREMIER</a>
-                        </div>
-                        <div className="collapse navbar-collapse" id="myNavbar">
-                            <ul className="nav navbar-nav navbar-right">
-                                <li><a href="/about">ABOUT</a></li>
-                                <li><a href="/Employee">DASHBOARD</a></li>
-                                <li><a href="/">LOGOUT</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        );
-    }
     render() {
         return (
             <div>
                 <div className="head">
-                    {this.navbar()}
+                <Navbar />
                 </div>
                 <div className="container-fluid text-center">
                     <div className="row content">
@@ -323,4 +293,4 @@ class Addbook extends Component {
         );
     }
 }
-export default Addbook;
+export default Addupcomingbook;

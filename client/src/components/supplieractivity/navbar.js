@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import './navbar.css';
+import '../navbar.css';
 //import {Image} from 'react-bootstrap';
 class Navbar extends Component {
     logout = (e) => {
@@ -26,7 +26,7 @@ class Navbar extends Component {
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/#contact">CONTACT US</a></li>
-                                <li><a href="#services">DASHBOARD</a></li>
+                                <li><a href="/supplier">DASHBOARD</a></li>
                                 <li className="custname"><a href="#">{localStorage.fname}</a></li>
                                 <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>

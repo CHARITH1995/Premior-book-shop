@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 //import {Link} from 'react-router-dom';
 import { Image, Panel } from 'react-bootstrap';
 import 'react-bootstrap';
-import './editbooks.css';
+import Navbar from './navbar';
+import '../Books/editbooks.css';
 
-class Editbook extends Component {
+class Editupcomingbook extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -38,7 +39,7 @@ class Editbook extends Component {
     }
     componentDidMount() {
         var authToken = localStorage.token;
-        fetch("http://localhost:4000/book/"+this.props.match.params.id, {
+        fetch("http://localhost:4000/book/up/"+this.props.match.params.id, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -53,12 +54,11 @@ class Editbook extends Component {
                 this.setState({
                     name:data.name,
                     author:data.author,
-                    qty:data.Qty,
                     price:data.price,
                     description:data.description,
                     imagename:data.imagename,
                     publisher:data.Publisher,
-                    publish_year:data.PublishYear
+                    publish_year:data.publish_year
                 });
             });
             fetch("http://localhost:4000/book/showitems", {
@@ -105,7 +105,7 @@ class Editbook extends Component {
         this.state.image = this.state.imagename
         if (this.validate()) {
             if(this.state.file !== null){
-        fetch("http://localhost:4000/book/addimage", {
+        fetch("http://localhost:4000/book/upcomingaddimage", {
             method: "POST",
             mode: 'no-cors',
             headers: {
@@ -125,10 +125,9 @@ class Editbook extends Component {
                 imagename: this.state.image,
                 price:this.state.price,
                 publisher: this.state.publisher,
-                qty: this.state.qty
             }
             console.log(book)
-        fetch("http://localhost:4000/book/Update/"+this.props.match.params.id, {
+        fetch("http://localhost:4000/book/Updatenewbook/"+this.props.match.params.id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -146,7 +145,7 @@ class Editbook extends Component {
                     msg:json.msg
                 });
                // window.location.reload();
-               this.props.history.push("/Booklist");
+               this.props.history.push("/Removeupcomingbook");
 
             } else {
                 console.log(json)
@@ -163,7 +162,7 @@ class Editbook extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                 <div className="container">
-                    <h2 className="titles">UPDATE BOOK DETAILS</h2>
+                    <h2 className="titles">UPDATE UPCOMING BOOK DETAILS</h2>
                     <form className="form-horizontal" >
                         <div className="form-group">
                             <label className="control-label col-sm-2" for="email">Name:</label>
@@ -181,7 +180,7 @@ class Editbook extends Component {
                         <div className="form-group">
                             <label className="control-label col-sm-2" for="pwd">Published Year:</label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="publishyear" placeholder="Enter book publish year" name="PublishYear" rows="4" cols="5" value={this.state.publish_year} onChange={this.handleChange}  required/>
+                                <input type="text" className="form-control" id="publishyear" placeholder="Enter book publish year" name="publish_year" rows="4" cols="5" value={this.state.publish_year} onChange={this.handleChange}  required/>
                             </div>
                         </div>
                         <div className="form-group">
@@ -202,12 +201,6 @@ class Editbook extends Component {
                                     <input type="number" className="form-control" id="price" placeholder="Enter book price" name="price" value={this.state.price} onChange={this.handleChange} required />
                                 </div>
                             </div>
-                        <div className="form-group">
-                            <label className="control-label col-sm-2" for="pwd">Quantity :</label>
-                            <div className="col-sm-8">
-                                <input type="number" className="form-control" id="qty" placeholder="Enter book quantity" name="Qty" value={this.state.qty} onChange={this.handleChange}  required/>
-                            </div>
-                        </div>
                         <div className="form-group">
                             <label className="control-label col-sm-2" for="pwd">Description:</label>
                             <div className="col-sm-8">
@@ -278,9 +271,7 @@ class Editbook extends Component {
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
-                                <li><a href="/Employee">DASHBOARD</a></li>
-                                <li><a href="/Booklist">BOOKLIST</a></li>
-                                <li><a href="/home">LOGOUT</a></li>
+                                <li><a href="/supplier">DASHBOARD</a></li>
                             </ul>
                         </div>
                     </div>
@@ -292,7 +283,7 @@ class Editbook extends Component {
         return (
             <div>
                 <div className="head">
-                    {this.navbar()}
+                <Navbar />
                 </div>
                 <div className="container-fluid">
                 
@@ -343,4 +334,4 @@ class Editbook extends Component {
         );
     }
 }
-export default Editbook;
+export default Editupcomingbook;

@@ -5,7 +5,7 @@ class Contact extends Component {
     render() {
         return (
             <div>
-                <div id="contact" class="container-fluid bg-primary">
+                <div id="contact" className="container-fluid bg-primary">
                     <h2 className="name text-center">CONTACT US</h2>
                     <div className="row">
                         <div className="col-sm-5">

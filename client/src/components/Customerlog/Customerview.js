@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+//import { Image, Panel } from 'react-bootstrap';
 import './Customerview.css';
 
 class Customerview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            book: []
+            book: [],
         };
 
     }
     purch(id) {
+        //var authToken = localStorage.token;
         console.log(id);
-        fetch("http://localhost:4000/book/purch/" + id, {
+        fetch("http://localhost:4000/book/purch/"+id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -28,7 +30,8 @@ class Customerview extends Component {
             })
     }
     componentDidMount() {
-        fetch("http://localhost:4000/book/Customerview/" + this.props.match.params.id, {
+        //var authToken = localStorage.token;
+        fetch("http://localhost:4000/book/Customerview/"+this.props.match.params.id, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

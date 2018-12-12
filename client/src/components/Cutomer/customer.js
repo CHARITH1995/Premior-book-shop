@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
 //import { Link } from 'react-router-dom';
+import {Panel } from 'react-bootstrap';
 import './customer.css';
 
 class Customerlist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            customers: []
+            customers: [],
+            msg: '',
+            showsuc: false,
+            showerr: false,
         };
 
     }
@@ -37,11 +41,17 @@ class Customerlist extends Component {
         }).then(result => result.json())
             .then(json => {
                 if (json.success) {
-                    console.log(json)
+                    this.setState({
+                        msg:json.msg,
+                        showsuc:true
+                    })
                     window.location.reload();
 
                 } else {
-                    console.log(json)
+                    this.setState({
+                        msg:json.msg,
+                        showerr:true
+                    })
                 }
             })
 
@@ -86,7 +96,17 @@ class Customerlist extends Component {
                         <div class="col-sm-2 sidenav">
                         </div>
                         <div class="col-sm-8 text-left">
-                            {this.state.customers.map(customer =>
+                        {
+                        this.state.showerr ? (
+                            <div className="message">
+                                <Panel bsStyle="danger" className="text-center">
+                                    <Panel.Heading>
+                                        <Panel.Title componentClass="h3">{this.state.msg}</Panel.Title>
+                                    </Panel.Heading>
+                                </Panel>
+                            </div>
+                        ) : (
+                            this.state.customers.map(customer =>
                                 <div className="well">
                                     <ul>
                                         <li><span className="attribute">ID : </span>{customer._id}</li>
@@ -101,7 +121,8 @@ class Customerlist extends Component {
                                     <hr />
                                 </div>
                             )
-                            }
+                            )
+                    }
                         </div>
 
 

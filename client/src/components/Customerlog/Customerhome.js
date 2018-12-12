@@ -13,6 +13,7 @@ class Customerhome extends Component {
     }
 
     componentDidMount() {
+        //var authToken = localStorage.token;
         fetch("http://localhost:4000/book/Booklist", {
             method: "POST",
             headers: {
@@ -24,7 +25,7 @@ class Customerhome extends Component {
             })
             .then(data => {
                 this.setState({
-                    books: data
+                    books: data.data
                 });
             });
     }

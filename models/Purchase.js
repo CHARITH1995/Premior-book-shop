@@ -1,17 +1,14 @@
 const mongoose= require('mongoose');
 const Schema = mongoose.Schema;
-mongoose.set('usecreateIndexes',true);
 
 const Purchase= new Schema({
     Name:{
         type:String,
-        require:'Customer field cant be empty',
-       
+        require:'Customer field cant be empty',    
     },
     Items:{
         type:String,
         require:'Item field is required'
-
     },
     Date:{
         type:String,

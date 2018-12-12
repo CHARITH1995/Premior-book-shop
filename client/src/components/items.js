@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link,withRouter } from 'react-router-dom';
+import { Panel } from 'react-bootstrap';
 import './items.css';
 //import './dashboard.css';
 class Items extends Component {
@@ -8,6 +9,8 @@ class Items extends Component {
         this.state = {
             books:[],
             email:'',
+            show:true,
+            msg:'',
             password:'',
             user:[]
         };
@@ -41,13 +44,9 @@ class Items extends Component {
             if(json.success){
                 sessionStorage.setItem('token',json.token);
                 localStorage.setItem('name',json.name)
-                //console.log(localStorage.getItem('name'));
-                //console.log(sessionStorage.getItem('token'));
                 this.props.history.push("/Customerhome");
             }
         });
-
-
     }
 
     customerlog() {
@@ -90,9 +89,17 @@ class Items extends Component {
                 return response.json();
             })
             .then(data => {
-                this.setState({
-                    books: data
-                });
+                if(data.length === 0){
+                    this.setState({
+                        msg:'nothing to show',
+                        show:false
+                    });
+                }else{
+                    this.setState({
+                        books:data.data
+                    })
+                }
+                
             });
     }
     render() {
@@ -107,7 +114,9 @@ class Items extends Component {
                         {this.customerlog()}
                         </div>
                         <div className="col-md-6 list ">
-                        {this.state.books.map(book =>
+                        {
+                        this.state.show ? (
+                            this.state.books.map(book =>
                                 <div className="well">
                                     <ul>
                                     <span className="glyphicon glyphicon-book logo-small"></span>
@@ -115,15 +124,21 @@ class Items extends Component {
                                         <li><span className="attribute">AUTHOR: </span>{book.author}</li>
                                         <div className="buttonlist">
                                         <Link to={"/view/"+book._id} className="btn btn-success">View</Link>
-                                        
-                                        </div>
-                                        
-                                        
+                                        </div>    
                                     </ul>
                                     <hr />
                                 </div>
                             )
-                            }
+                        ) : (
+                            <div className="message">
+                            <Panel bsStyle="danger" className="text-center">
+                                <Panel.Heading>
+                                    <Panel.Title componentClass="h3">{this.state.msg}</Panel.Title>
+                                </Panel.Heading>
+                            </Panel>
+                        </div>
+                            )
+                    }
                         </div>
                         <div class="col-sm-3 sidenav well">
                         </div>
