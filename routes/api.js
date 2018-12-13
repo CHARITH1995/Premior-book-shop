@@ -31,6 +31,10 @@ router.post('/Purchase', purchases.purchlist);
 router.post('/addPurch',purchases.newpurch);//http://localhost:4000/book/Supplierreg
 router.post('/Employeereg',employee.Employeeadd);//http://localhost:4000/book/Employeereg
 router.post('/Employeelog',employee.Employeelog);//http://localhost:4000/book/Supplierlog  
+router.get('/employee/:token',employee.editdetail);
+router.put('/employeeupdate',employee.updatedetail);
+router.post('/forgetpwd',employee.mailverify);
+router.put('/resetpwd/:id/:password',employee.resetpwd);
 router.post('/Supplierreg',supplier.Supplieradd);
 router.post('/Supplierlog',supplier.Supplierlog);
 router.post('/upcomingaddimage',upbooks.addnewbook);
@@ -39,7 +43,11 @@ router.post('/addupcomingadd',upbooks.addbook);
 router.put('/Updatenewbook/:id',upbooks.updatebooks);
 router.post('/UpcomingBooklist',upbooks.showbooks);
 router.delete('/Deleteupcoming/:id',upbooks.bookremove);
-/*router.post('/add',upbooks.addbook);//http://localhost:4000/book/Employeelog
+router.get('/supplier/:token',supplier.editdetail);
+router.put('/supplierupdate',supplier.updatedetail);
+router.put('/resetsuppwd/:id/:password',supplier.resetpwd);
+router.post('/forgetsuppwd',supplier.mailverify);
+/*router.post('/add',upbooks.addbook);//http://localhost:4000/book/Employeelog  http://localhost:4000/book/forgetpwd
 router.post('/Booklist',upbooks.showbooks);
 router.post('/addimage',upbooks.addnewbook);
 router.post('/additem',upbooks.additem);

@@ -79,7 +79,6 @@ module.exports.updatebooks=(req,res,next)=>{
     books.findOneAndUpdate({
         _id: req.params.id
     }, req.body).then(function (doc) {
-        
         if (!doc) {
             res.json({ success: false ,msg:'fail!!'});
         } else {

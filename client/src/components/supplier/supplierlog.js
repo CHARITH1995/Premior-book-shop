@@ -201,6 +201,11 @@ class Supplierlogin extends Component {
                                 <div>
                                     {this.formfield()}
                                 </div>
+                                <div className="editbuttongroup">
+                                    <div className="viewbutton">
+                                        <Link to={"/forgetsuppassword" } className="glyphicon glyphicon-circle-arrow-right">Forget Password</Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -12,13 +12,19 @@ import Itemtypes from './components/Items/itemtypes.js';
 import Customerlog from './components/Customerlog/Customerhome';
 import Customerview from './components/Customerlog/Customerview';
 import Employeeregister from './components/employeelogin/employeeregister';//Employeelogin
-import Employeelogin from './components/employeelogin/employeelogin';// Editupcomingbook   UpcomingBooklist
+import Employeelogin from './components/employeelogin/employeelogin';// Editupcomingbook   UpcomingBooklist  
 import Supplierregister from './components/supplier/supplierregister';
 import Supplierlogin from './components/supplier/supplierlog';
 import Supplier from './components/supplieractivity/supplier';
 import Addupcomingbook from './components/supplieractivity/addupcomingbooks';
 import Editupcomingbook from './components/supplieractivity/editupcomingbook';
 import UpcomingBooklist from './components/supplieractivity/removeupcomingbooks';
+import Employeeprofile from './components/employeelogin/profile/employeeupdate';
+import Passwordchange from './components/employeelogin/profile/passwordedit';
+import Forgetpassword from './components/employeelogin/profile/forgetpwd';
+import Supplierprofile from './components/supplier/profile/supplierupdate';
+import Suppasswordchange from './components/supplier/profile/passwordedit';
+import Forgetsuppassword from './components/supplier/profile/forgetpwd';
 import Error from './components/error';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
@@ -32,6 +38,7 @@ class App extends Component {
         <Switch>
             {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/employee" component={Employee}/> :
              <Route path="/Error" component={Error} />}
+              <Redirect from="/employeereg" to="/Error" />
         </Switch>
         <Switch>
             {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/Addbooks" component={Addbooks}/> :
@@ -81,7 +88,20 @@ class App extends Component {
         <Switch>
             {((localStorage.token)&&((localStorage.type))==='supplier') ? <Route  path="/Removeupcomingbook" component={UpcomingBooklist}/> :
              <Route path="/Error" component={Error} />}
+              <Redirect from="/employeereg" to="/Error" />
         </Switch>
+        <Switch>
+            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/updateprofile" component={Employeeprofile}/> :
+             <Route path="/Error" component={Error} />}
+        </Switch>
+        <Switch>
+            {((localStorage.token)&&((localStorage.type))==='supplier') ? <Route  path="/updatesupplierprofile" component={Supplierprofile}/> :
+             <Route path="/Error" component={Error} />}
+        </Switch>
+        <Route  path="/editpassword/:id/:password" component={Passwordchange}/>
+        <Route  path="/editsupplierpassword/:id/:password" component={Suppasswordchange}/>
+        <Route  path="/forgetsuppassword" component={Forgetsuppassword}/>
+        <Route  path="/forgetpassword" component={Forgetpassword}/>
         <Route  path="/employeelog" component={Employeelogin}/>
         <Route  path="/supplierregister" component={Supplierregister}/>
         <Route  path="/supplierlog" component={Supplierlogin}/> 

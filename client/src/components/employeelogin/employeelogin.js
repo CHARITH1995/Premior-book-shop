@@ -3,6 +3,7 @@ import { Panel } from 'react-bootstrap';
 import { withRouter ,Link} from "react-router-dom";
 import './employeelogin.css';
 
+
 class Employeelogin extends Component {
     constructor(props) {
         super(props);
@@ -200,6 +201,11 @@ class Employeelogin extends Component {
                                 </div>
                                 <div>
                                     {this.formfield()}
+                                </div>
+                                <div className="editbuttongroup">
+                                    <div className="viewbutton">
+                                        <Link to={"/forgetpassword" } className="glyphicon glyphicon-circle-arrow-right">Forget Password</Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>

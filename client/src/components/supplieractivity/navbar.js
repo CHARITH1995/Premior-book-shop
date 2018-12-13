@@ -27,7 +27,7 @@ class Navbar extends Component {
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/#contact">CONTACT US</a></li>
                                 <li><a href="/supplier">DASHBOARD</a></li>
-                                <li className="custname"><a href="#">{localStorage.fname}</a></li>
+                                <li className="custname"><a href="/updatesupplierprofile">{localStorage.fname}</a></li>
                                 <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>
