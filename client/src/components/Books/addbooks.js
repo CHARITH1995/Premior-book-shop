@@ -9,23 +9,24 @@ class Addbook extends Component {
         this.state = {
             name: '',
             author: '',
-            show:true,
-            msg:'',
-            price:'',
-            type:'',
-            typeerr:false,
+            arr: [1, 2, 3, 4],
+            show: true,
+            msg: '',
+            price: '',
+            type: '',
+            typeerr: false,
             description: '',
             publish_year: '',
             publisher: '',
             qty: '',
-            price:'',
-            items:[],
+            price: '',
+            items: [],
             authorerr: '',
             showerr: false,
             showsuc: false,
             msg: '',
             file: null,
-            imagename:''
+            imagename: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,7 +46,7 @@ class Addbook extends Component {
 
         this.setState({
             [name]: value,
-            authorerr:'',
+            authorerr: '',
             showerr: false,
             showsuc: false,
         });
@@ -59,20 +60,19 @@ class Addbook extends Component {
                 'authorization': authToken
             },
         }).then(res => res.json())
-        .then(details => {
-           // console.log(details.data)
-            if (details.success) {
-                this.setState({
-                    items:details.data
-                })
-            } else {
-                this.setState({
-                    show: false,
-                    msg: details.msg
-                })
-            }
-        });
-            console.log(this.state.items)
+            .then(details => {
+                if (details) {
+                    this.setState({
+                        items: details,
+                    })
+                } else {
+                    this.setState({
+                        show: false,
+                        msg: details.msg
+                    })
+                }
+            });
+        // console.log(this.state.items)
     }
     handleSubmit(e) {
         e.preventDefault();
@@ -83,26 +83,28 @@ class Addbook extends Component {
             this.state.image = this.state.imagename
             const book = {
                 name: this.state.name,
+                empid: localStorage.id,
+                empname: localStorage.fname,
                 author: this.state.author,
                 description: this.state.description,
                 publish_year: this.state.publish_year,
                 imagename: this.state.image,
-                price:this.state.price,
-                type:this.state.type,
+                price: this.state.price,
+                type: this.state.type,
                 publisher: this.state.publisher,
                 qty: this.state.qty
             }
             console.log(book)
             fetch("http://localhost:4000/book/addimage", {
-            method: "POST",
-            mode: 'no-cors',
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Request-Headers": "*",
-                "Access-Control-Request-Method": "*",
-                'authorization': authToken
-            },
-            body: fd
+                method: "POST",
+                mode: 'no-cors',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Request-Headers": "*",
+                    "Access-Control-Request-Method": "*",
+                    'authorization': authToken
+                },
+                body: fd
             });
             fetch("http://localhost:4000/book/add", {
                 method: 'post',
@@ -115,14 +117,14 @@ class Addbook extends Component {
                 .then(json => {
                     if (json.success) {
                         this.setState({
-                            showsuc:true,
-                            msg:json.msg
+                            showsuc: true,
+                            msg: json.msg
                         })
                         this.resetForm();
                     } else {
                         this.setState({
-                            showerr:true,
-                            msg:json.msg
+                            showerr: true,
+                            msg: json.msg
                         })
                     }
 
@@ -134,13 +136,13 @@ class Addbook extends Component {
         let formvalid = true;
         if (!this.state.author.match(/^([a-zA-Z' ]+)$/)) {
             this.setState({
-                authorerr:'check the Author name',
+                authorerr: 'check the Author name',
             })
             formvalid = false
         }
         if (this.state.type === 'undefined') {
             this.setState({
-                typeerr:'insert the book type',
+                typeerr: 'insert the book type',
             })
             formvalid = false
         }
@@ -150,9 +152,9 @@ class Addbook extends Component {
         this.setState({
             ...this.state,
             name: '',
-            type:1,
+            type: 1,
             author: '',
-            price:'',
+            price: '',
             description: '',
             publish_year: '',
             publisher: '',
@@ -176,7 +178,7 @@ class Addbook extends Component {
                                 <label className="control-label col-sm-2" for="pwd">Author:</label>
                                 <div class="col-sm-8">
                                     <input type="text" className="form-control" id="author" placeholder="Enter Auhtor name" name="author" value={this.state.author} onChange={this.handleChange} required />
-                                    <span style={{color: "#FD6571"}}>{this.state.authorerr}</span>
+                                    <span style={{ color: "#FD6571" }}>{this.state.authorerr}</span>
                                 </div>
                             </div>
                             <div className="form-group">
@@ -188,7 +190,7 @@ class Addbook extends Component {
                             <div className="form-group">
                                 <label className="control-label col-sm-2" for="pwd">Image:</label>
                                 <div className="col-sm-8">
-                                <input type="file" className="form-control" id="exampleFormControlInput1" name="Image" onChange={this.fileChange} />
+                                    <input type="file" className="form-control" id="exampleFormControlInput1" name="Image" onChange={this.fileChange} />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -210,12 +212,6 @@ class Addbook extends Component {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label className="control-label col-sm-2" for="pwd">Price :</label>
-                                <div className="col-sm-8">
-                                    <input type="number" className="form-control" id="price" placeholder="Enter book price" name="price" value={this.state.price} onChange={this.handleChange} required />
-                                </div>
-                            </div>
-                            <div className="form-group">
                             <label className="control-label col-sm-2" for="pwd">Book Type :</label>
                             <div className="col-sm-8">
                             <select className="form-control" id="Select1" name="type" value={this.state.type} onChange={this.handleChange}>
@@ -223,9 +219,9 @@ class Addbook extends Component {
                                 <option value="1">select type</option>
                                 {
                                     this.state.show ? (
-                                        this.state.items.map(item=>{
+                                        this.state.items.map(item=>
                                             <option value={item.name}>{item.name}</option>
-                                        })
+                                        )
                                     ):(
                                         <div className="message">
                                                 <Panel bsStyle="success" className="text-center">
@@ -239,7 +235,15 @@ class Addbook extends Component {
                             </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                            <div className="form-group">
+                                <label className="control-label col-sm-2" for="pwd">Price :</label>
+                                <div className="col-sm-8">
+                                    <input type="number" className="form-control" id="price" placeholder="Enter book price" name="price" value={this.state.price} onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                            <div class="form-group">
                                 <div class="col-sm-5">
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>
@@ -249,6 +253,12 @@ class Addbook extends Component {
                 </form>
             </div>
         );
+    }
+    logout = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        //sessionStorage.clear();
+        this.props.history.push("/")
     }
     navbar() {
         return (
@@ -267,7 +277,8 @@ class Addbook extends Component {
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/Employee">DASHBOARD</a></li>
-                                <li><a href="/">LOGOUT</a></li>
+                                <li className="custname"><a href="#">{localStorage.fname}</a></li>
+                                <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>
                     </div>
@@ -318,7 +329,6 @@ class Addbook extends Component {
                         {this.add()}
                     </div>
                 </div>
-
             </div>
         );
     }

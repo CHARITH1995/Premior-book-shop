@@ -57,6 +57,7 @@ class Employeelogin extends Component {
                     localStorage.setItem('token',json.token);
                     localStorage.setItem('type',json.type);
                     localStorage.setItem('fname',json.fname);
+                    localStorage.setItem('id',json.id);
                         this.setState({
                             show:true,
                             msg:json.msg,
@@ -139,12 +140,12 @@ class Employeelogin extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput1">Email :</label>
-                            <input type="email" className="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com" value={this.state.email} onChange={this.handleChange} />
+                            <input type="email" className="form-control" id="exampleFormControlInput1" name="email" placeholder="Enter your company password" value={this.state.email} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.emailerr}</span>
                         </div>
                         <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput1">Password :</label>
-                            <input type="password" className="form-control" id="exampleFormControlInput2" name="password" placeholder="0000000000V" value={this.state.password} onChange={this.handleChange} />
+                            <input type="password" className="form-control" id="exampleFormControlInput2" name="password" placeholder="enter your password" value={this.state.password} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.passworderr}</span>
                         </div>
                         <br /><br />

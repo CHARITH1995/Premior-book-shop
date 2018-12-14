@@ -41,6 +41,7 @@ module.exports.addbook=(req,res,next)=>{
             }else{
                 var Books = new books({
                     name: req.body.name,
+                    empid:req.body.empid,
                     empname:req.body.empname,
                     author: req.body.author,
                     description: req.body.description,
@@ -55,6 +56,7 @@ module.exports.addbook=(req,res,next)=>{
                     year:thisyear
                 });
                 Books.save((err, doc) => {
+                    console.log(doc)
                     if (!err) {
                         res.json({ success: true,msg:'successfully inserted!!' });
                     } else {

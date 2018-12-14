@@ -60,19 +60,22 @@ class Addupcomingbook extends Component {
                 'authorization': authToken
             },
         }).then(res => res.json())
-        .then(details => {
-           // console.log(details.data)
-            if (details.success) {
+            .then(details => {
+                console.log(details)
                 this.setState({
-                    items:details.data
+                    items:details,
                 })
-            } else {
-                this.setState({
-                    show: false,
-                    msg: details.msg
-                })
-            }
-        });
+                if (details) {
+                    this.setState({
+                        items:details,
+                    })
+                } else {
+                    this.setState({
+                        show: false,
+                        msg: details.msg
+                    })
+                }
+            });
             console.log(this.state.items)
     }
     handleSubmit(e) {
@@ -84,13 +87,15 @@ class Addupcomingbook extends Component {
             this.state.image = this.state.imagename
             const book = {
                 name: this.state.name,
+                supname:localStorage.fname,
+                supid:localStorage.id,
                 author: this.state.author,
                 description: this.state.description,
                 publish_year: this.state.publish_year,
                 imagename: this.state.image,
                 price:this.state.price,
                 type:this.state.type,
-                supname:localStorage.fname,
+                supid:localStorage.id,
                 publisher: this.state.publisher,
             }
             console.log(book)
@@ -218,9 +223,9 @@ class Addupcomingbook extends Component {
                                 <option value="1">select type</option>
                                 {
                                     this.state.show ? (
-                                        this.state.items.map(item=>{
+                                        this.state.items.map(item=>
                                             <option value={item.name}>{item.name}</option>
-                                        })
+                                        )
                                     ):(
                                         <div className="message">
                                                 <Panel bsStyle="success" className="text-center">

@@ -49,12 +49,17 @@ module.exports.showitems = (req, res, next) => {
             console.log('ERROR: Could not connect to the protected route');
             res.send({ success: false, msg: 'please log again' });
         } else {
+            var item=[]
     items.find().then(function (details) {
         //console.log(details)
         if (details.length == 0) {
             return res.json({ success: false, msg: 'no Items Types' });
         } else {
-            return res.json({ success: true, data: details });
+            // details.map(detail=>{
+            //     item.push(detail.name)
+            // })
+            // //console.log(item)
+            return res.json(details);
         }
     })
 }

@@ -16,7 +16,9 @@ class Itemtypes extends Component {
             name: '',
             nameerr: '',
             msg: '',
-            delmsg: ''
+            delmsg: '',
+            showerr:false,
+            showsuc:false,
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,8 +45,13 @@ class Itemtypes extends Component {
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
-                                <li><a href="/Employee">DASHBOARD</a></li>
-                                <li><a href="/">LOGOUT</a></li>
+                                {
+                                    (localStorage.type ==='employee')?(
+                                        <li><a href="/Employee">DASHBOARD</a></li>
+                                    ):(
+                                        <li><a href="/supplier">DASHBOARD</a></li>
+                                    )
+                                }
                             </ul>
                         </div>
                     </div>
@@ -71,11 +78,12 @@ class Itemtypes extends Component {
                 if (details.success) {
                     this.setState({
                         items: details.data,
-                        msg: details.msg
+                        msg: details.msg,
+                        showsuc:true,
                     })
                 } else {
                     this.setState({
-                        show: false,
+                        showerr:true,
                         msg: details.msg
                     })
                 }
@@ -97,13 +105,14 @@ class Itemtypes extends Component {
         .then(data => {
             if (data.success) {
                 this.setState({
-                    delmsg: data.msg,
+                    msg:"successfully Deleted!!!",
+                    showsuc:true,
                 })
-               // alert(this.state.msg)
                 window.location.reload();
             } else {
                 this.setState({
-                    delmsg: data.msg
+                    msg:"Cannot Delete!!",
+                    showerr:true
                 })
             }
         })
@@ -117,7 +126,7 @@ class Itemtypes extends Component {
             formvalid=false;
         }
         if(this.state.name !== "undefined"){
-            if(!this.state.name.match(/^[a-zA-Z]{3,}$/i)){
+            if(!this.state.name.match(/^([a-zA-Z' ]+)$/)){
                 this.setState({
                     nameerr:'name field not valid'
                 })
@@ -132,6 +141,9 @@ class Itemtypes extends Component {
         let name = target.name;
         this.setState({
             [name]: value,
+            msg:'',
+            showsuc:false,
+            showerr:false
         });
     }
     form() {
@@ -163,14 +175,15 @@ class Itemtypes extends Component {
             },
         }).then(res => res.json())
         .then(details => {
-            if (details.success) {
+            if (details) {
                 this.setState({
-                    items: details.data
+                    items: details,
+                    show:true,
                 })
             } else {
                 this.setState({
-                    show: false,
-                    msg: details.msg
+                    showerr: true,
+                    msg:'nothing to show!!'
                 })
             }
         });
@@ -188,6 +201,34 @@ class Itemtypes extends Component {
                         {this.navbar()}
                     </div>
                     <div className="container-fluid">
+                    {
+                                        this.state.showsuc ? (
+                                            <div className="message">
+                                                <Panel bsStyle="success" className="text-center">
+                                                    <Panel.Heading>
+                                                        <Panel.Title componentClass="h3">{this.state.msg}</Panel.Title>
+                                                    </Panel.Heading>
+                                                </Panel>
+                                            </div>
+                                        ) : (
+                                                <div>
+                                                </div>
+                                            )
+                                    }
+                                    {
+                                        this.state.showerr ? (
+                                            <div className="message text-center">
+                                                <Panel bsStyle="danger" className="table">
+                                            <Panel.Heading>
+                                                <Panel.Title componentClass="h3">{this.state.msg}</Panel.Title>
+                                            </Panel.Heading>
+                                        </Panel>
+                                            </div>
+                                        ) : (
+                                                <div>
+                                                </div>
+                                            )
+                                    }
                         <h3 className="title">ITEM TYPES </h3>
                         <div className="col-sm-3">
                             {this.form()}
@@ -208,13 +249,22 @@ class Itemtypes extends Component {
                                                 <tr>
                                                     <td>{item.name}</td>
                                                     <td>{item.date}</td>
-                                                    <td><OverlayTrigger
-                                                        trigger={['hover', 'focus']}
-                                                        placement="bottom"
-                                                        overlay={popoverHoverFocus}
-                                                    >
-                                                        <button className="btn btn-danger" onClick={this.removeitem.bind(this, item._id)}>Remove</button>
-                                                    </OverlayTrigger></td>
+                                                    {
+                                                        ((localStorage.type === 'employee')||(localStorage.type === 'admin')) ?
+                                                        (
+                                                            <td><OverlayTrigger
+                                                                trigger={['hover', 'focus']}
+                                                                placement="bottom"
+                                                                overlay={popoverHoverFocus}
+                                                            >
+                                                                <button className="btn btn-danger" onClick={this.removeitem.bind(this, item._id)}>Remove</button>
+                                                            </OverlayTrigger></td>
+                                                            
+                                                        ) : (
+                                                            <div className="buttonlists">
+                                                            </div>
+                                                        )
+                                                    }
                                                 </tr>
                                             )}
                                         </tbody>

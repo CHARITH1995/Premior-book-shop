@@ -10,7 +10,10 @@ const Books= new Schema({
     empname:{
         type:String,
         require:'name field cant be empty',
-        unique:true
+    },
+    empid:{
+        type:String,
+        require:'name field cant be empty',
     },
     author:{
         type:String,
@@ -50,7 +53,7 @@ const Books= new Schema({
         default:"unsold"
     },
     inserteddate:{
-        type:Number,
+        type:Date,
         require:'price is required'
     },
     month:{

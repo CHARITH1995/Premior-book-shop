@@ -114,7 +114,7 @@ class Forgetsuppassword extends Component {
                     <form onSubmit={this.handleSubmit} name="inventry">
                     <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput6">Email :</label>
-                            <input type="email" className="form-control" id="exampleFormControlInput6" name="email" placeholder="0000000000V" value={this.state.email} onChange={this.handleChange} />
+                            <input type="email" className="form-control" id="exampleFormControlInput6" name="email" placeholder="enter your company email" value={this.state.email} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.emailerr}</span>
                         </div>
                         <br /><br />

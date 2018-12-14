@@ -10,7 +10,10 @@ const Upcomingbooks = new Schema({
     supname:{
         type:String,
         require:'name field cant be empty',
-        unique:true
+    },
+    supid:{
+        type:String,
+        require:'supid field is required'
     },
     author:{
         type:String,
@@ -42,7 +45,7 @@ const Upcomingbooks = new Schema({
         require:'price is required'
     },
     inserteddate:{
-        type:Number,
+        type:Date,
         require:'price is required'
     },
     month:{

@@ -28,25 +28,25 @@ class UpcomingBooklist extends Component {
                 'authorization': authToken
             },
         }).then(function (response) {
-                return response.json();
-            })
+            return response.json();
+        })
             .then(data => {
                 console.log(data)
                 if (data.success) {
                     this.setState({
-                        books:data.data
+                        books: data.data
                     });
                 } else {
                     this.setState({
-                        loading:false,
-                        loadingmsg:data.msg
+                        loading: false,
+                        loadingmsg: data.msg
                     });
                 }
             });
     }
     delete(id) {
         var authToken = localStorage.token;
-        fetch("http://localhost:4000/book/Deleteupcoming/"+ id, {
+        fetch("http://localhost:4000/book/Deleteupcoming/" + id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +76,7 @@ class UpcomingBooklist extends Component {
         return (
             <div>
                 <div className="head">
-                <Navbar />
+                    <Navbar />
                 </div>
                 <div className="container-fluid">
                     <h2 className="tit">Books Details</h2>
@@ -126,10 +126,21 @@ class UpcomingBooklist extends Component {
                                                     <li><span className="attribute">PUBLISH YEAR : </span>{book.publish_year}</li>
                                                     <li><span className="attribute">PUBLISHER : </span>{book.Publisher}</li>
                                                     <li><span className="attribute">SUPPLIER : </span>{book.supname}</li>
-                                                    <div className="buttonlists">
-                                                        <Link to={"/Editupcomingbook/" + book._id} className="btn btn-info">Edit</Link>
-                                                        <button className="btn btn-danger" onClick={this.delete.bind(this, book._id)}>Delete</button>
-                                                    </div>
+                                                    <li><span className="attribute">PRICE : Rs. </span>{book.price} /=</li>
+                                                    <li><span className="attribute">TYPE : </span>{book.type}</li>
+                                                    <li><span className="attribute">INSERTED DATE : </span>{book.inserteddate}</li>
+                                                    {
+                                                        (book.supid === localStorage.id) ?
+                                                        (
+                                                            <div className="buttonlists">
+                                                                <Link to={"/Editupcomingbook/" + book._id} className="btn btn-info">Edit</Link>
+                                                                <button className="btn btn-danger" onClick={this.delete.bind(this, book._id)}>Delete</button>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="buttonlists">
+                                                            </div>
+                                                        )
+                                                    }
                                                 </ul>
                                                 <hr />
                                             </div>

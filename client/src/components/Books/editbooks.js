@@ -20,7 +20,7 @@ class Editbook extends Component {
             file: null,
             imagename:'',
             authorerr: '',
-            show:false,
+            show:true,
             showerr: false,
             showsuc: false,
             msg: '',
@@ -49,12 +49,13 @@ class Editbook extends Component {
                 return response.json();
             })
             .then(data => {
-                console.log(data)
+                //console.log(data)
                 this.setState({
                     name:data.name,
                     author:data.author,
                     qty:data.Qty,
                     price:data.price,
+                    type:data.type,
                     description:data.description,
                     imagename:data.imagename,
                     publisher:data.Publisher,
@@ -67,23 +68,21 @@ class Editbook extends Component {
                     "Content-Type": "application/json",
                     'authorization': authToken
                 },
-            })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(json => {
-                   //console.log(json.data)
-                    if (json.success) {
+            }).then(res => res.json())
+                .then(details => {
+                    if (details) {
+                        console.log(details)
                         this.setState({
-                            items:json.data,
-                            show:true
+                            items:details,
                         })
                     } else {
                         this.setState({
-                             msg:json.msg
+                            show: false,
+                            msg: details.msg
                         })
                     }
-                })
+                });
+            console.log(this.state.items)
     }
     handleChange(e) {
         let target = e.target;
@@ -121,6 +120,7 @@ class Editbook extends Component {
                 name: this.state.name,
                 author: this.state.author,
                 description: this.state.description,
+                type:this.state.type,
                 publish_year: this.state.publish_year,
                 imagename: this.state.image,
                 price:this.state.price,
@@ -222,9 +222,9 @@ class Editbook extends Component {
                                 <option value="1">select type</option>
                                 {
                                     this.state.show ? (
-                                        this.state.items.map(item=>{
+                                        this.state.items.map(item=>
                                             <option value={item.name}>{item.name}</option>
-                                        })
+                                        )
                                     ):(
                                         <div className="message">
                                                 <Panel bsStyle="success" className="text-center">
@@ -280,13 +280,20 @@ class Editbook extends Component {
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/Employee">DASHBOARD</a></li>
                                 <li><a href="/Booklist">BOOKLIST</a></li>
-                                <li><a href="/home">LOGOUT</a></li>
+                                <li className="custname"><a href="#">{localStorage.fname}</a></li>
+                                <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         );
+    }
+    logout = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        //sessionStorage.clear();
+        this.props.history.push("/")
     }
     render() {
         return (

@@ -53,6 +53,7 @@ class Supplierlogin extends Component {
                     console.log(json)
                     if (json.success) {
                     this.unmount();
+                    localStorage.setItem('id',json.id);
                     localStorage.setItem('token',json.token);
                     localStorage.setItem('type',json.type);
                     localStorage.setItem('fname',json.fname);
@@ -138,12 +139,12 @@ class Supplierlogin extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput1">Email :</label>
-                            <input type="email" className="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com" value={this.state.email} onChange={this.handleChange} />
+                            <input type="email" className="form-control" id="exampleFormControlInput1" name="email" placeholder="Enter your company email" value={this.state.email} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.emailerr}</span>
                         </div>
                         <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput1">Password :</label>
-                            <input type="password" className="form-control" id="exampleFormControlInput2" name="password" placeholder="0000000000V" value={this.state.password} onChange={this.handleChange} />
+                            <input type="password" className="form-control" id="exampleFormControlInput2" name="password" placeholder="Enter your password" value={this.state.password} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.passworderr}</span>
                         </div>
                         <br /><br />

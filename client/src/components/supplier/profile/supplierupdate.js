@@ -103,9 +103,9 @@ class Supplierprofile extends Component {
             const user = {
                 firstname: this.state.fname,
                 lastname: this.state.lname,
-                email:this.state.email,
+                //email:this.state.email,
                 tp:this.state.tp,
-                id:this.state.id,
+                //id:this.state.id,
                 _id:this.state._id,
             }
             console.log(user)
@@ -176,8 +176,8 @@ class Supplierprofile extends Component {
             this.setState({
                 fname: detail.data.firstname,
                 lname: detail.data.lastname,
-                email: detail.data.email,
-                id: detail.data.id,
+                //email: detail.data.email,
+                //id: detail.data.id,
                 tp: detail.data.tp,
                 city:detail.data.city,
                 _id:detail.data._id,
@@ -201,19 +201,9 @@ class Supplierprofile extends Component {
                             <span style={{ color: "#FD6571" }}>{this.state.lnameerr}</span>
                         </div>
                         <div className="form-group col-md-8">
-                            <label htmlFor="exampleFormControlInput3">Email :</label>
-                            <input type="email" className="form-control" id="exampleFormControlInput3" name="email" placeholder="name@example.com" value={this.state.email} onChange={this.handleChange} />
-                            <span style={{ color: "#FD6571" }}>{this.state.emailerr}</span>
-                        </div>
-                        <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput4">Telephone number :</label>
                             <input type="number" className="form-control" id="exampleFormControlInput4" name="tp" placeholder="name@example.com" value={this.state.tp} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.tperr}</span>
-                        </div>
-                        <div className="form-group col-md-8">
-                            <label htmlFor="exampleFormControlInput5">NIC number :</label>
-                            <input type="text" className="form-control" id="exampleFormControlInput5" name="id" placeholder="0000000000V" value={this.state.id} onChange={this.handleChange} />
-                            <span style={{ color: "#FD6571" }}>{this.state.Iderr}</span>
                         </div>
                         <br /><br />
                         <div className="form-group col-md-8">

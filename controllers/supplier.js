@@ -16,7 +16,7 @@ module.exports.Supplierlog = (req, res, next) => {
         } else {
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 var token = jwt.sign(user.toJSON(), 'secretkey');
-                return res.json({ success: true, token: token, type: user.type, fname: user.firstname });
+                return res.json({ success: true, token: token, type: user.type, fname: user.firstname ,id:user._id});
             } else {
                 return res.json({ success: false, msg: 'Authentication fail.wrong password' });
             }
@@ -24,11 +24,6 @@ module.exports.Supplierlog = (req, res, next) => {
     });
 }
 module.exports.Supplieradd = (req, res, next) => {
-    jwt.verify(req.headers['authorization'], 'secretkey', (err, authorizedData) => {
-        if (err) {
-            console.log('ERROR: Could not connect to the protected route');
-            res.send({ success: false, msg: 'please log again' });
-        } else {
             supplier.findOne({
                 email: req.body.email
             }).then(function (data) {
@@ -67,9 +62,7 @@ module.exports.Supplieradd = (req, res, next) => {
                         }
                     });
                 }
-            });
-        }
-    }); 
+            }); 
 }
 
 //Employeereg
@@ -107,13 +100,9 @@ module.exports.editdetail = (req, res, next) => {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password, salt);
     var pwd = req.params.password;
-    console.log(pwd)
-    console.log(hash)
     var myquery = { password: pwd }
     var newvalues = { $set: { _id: req.params.id, password: hash } };
     supplier.updateOne(myquery, newvalues, function (err, doc) {
-        console.log(doc)
-        console.log(err)
       if (doc) {
         return res.json({ success: true, msg: 'successfully updated!' });
       } else {

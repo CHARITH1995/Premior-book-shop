@@ -71,6 +71,12 @@ class Booklist extends Component {
                 }
             })
     }
+    logout = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        //sessionStorage.clear();
+        this.props.history.push("/")
+    }
     navbar() {
         return (
             <div>
@@ -88,7 +94,8 @@ class Booklist extends Component {
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/Employee">DASHBOARD</a></li>
-                                <li><a href="/">LOGOUT</a></li>
+                                <li className="custname"><a href="/updatesupplierprofile">{localStorage.fname}</a></li>
+                                <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>
                     </div>
@@ -150,10 +157,22 @@ class Booklist extends Component {
                                                     <li><span className="attribute">PUBLISH YEAR : </span>{book.PublishYear}</li>
                                                     <li><span className="attribute">PUBLISHER : </span>{book.Publisher}</li>
                                                     <li><span className="attribute">AVAILABLE STOCK : </span>{book.Qty}</li>
-                                                    <div className="buttonlists">
-                                                        <Link to={"/edit/" + book._id} className="btn btn-info">Edit</Link>
-                                                        <button className="btn btn-danger" onClick={this.delete.bind(this, book._id)}>Delete</button>
-                                                    </div>
+                                                    <li><span className="attribute">PRICE : Rs. </span>{book.price} /=</li>
+                                                    <li><span className="attribute">TYPE : </span>{book.type}</li>
+                                                    <li><span className="attribute">AUTHORIZED BY : </span>{book.empname}</li>
+                                                    <li><span className="attribute">INSERTED DATE : </span>{book.inserteddate}</li>
+                                                    {
+                                                        (book.empid === localStorage.id) ?
+                                                        (
+                                                            <div className="buttonlists">
+                                                                <Link to={"/edit/" + book._id} className="btn btn-info">Edit</Link>
+                                                                <button className="btn btn-danger" onClick={this.delete.bind(this, book._id)}>Delete</button>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="buttonlists">
+                                                            </div>
+                                                        )
+                                                    }
                                                 </ul>
                                                 <hr />
                                             </div>

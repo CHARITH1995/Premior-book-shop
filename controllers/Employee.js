@@ -16,7 +16,7 @@ module.exports.Employeelog = (req, res, next) => {
         } else {
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 var token = jwt.sign(user.toJSON(), 'secretkey');
-                return res.json({ success: true, token: token, type: user.type, fname: user.firstname });
+                return res.json({ success: true, token: token, type: user.type, fname: user.firstname,id:user._id });
             } else {
                 return res.json({ success: false, msg: 'Authentication fail.wrong password' });
             }

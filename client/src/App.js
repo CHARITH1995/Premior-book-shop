@@ -36,66 +36,66 @@ class App extends Component {
          <div>
         <Route exact path="/" component={Home}/>  
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/employee" component={Employee}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/employee" component={Employee}/> :
              <Route path="/Error" component={Error} />}
               <Redirect from="/employeereg" to="/Error" />
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/Addbooks" component={Addbooks}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Addbooks" component={Addbooks}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/Booklist" component={Booklist}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Booklist" component={Booklist}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/employeereg" component={Employeeregister}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/employeereg" component={Employeeregister}/> :
              <Route path="/Error" component={Error} />}
             <Redirect from="/employeereg" to="/Error" />
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/Purchase" component={Purchase}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Purchase" component={Purchase}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/edit/:id" component={Editbook}/>:
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/edit/:id" component={Editbook}/>:
             <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/items" component={Itemtypes}/> :
+            {(((localStorage.token)&&((localStorage.type)==='employee'))||((localStorage.token)&&((localStorage.type))==='supplier')) ? <Route  path="/items" component={Itemtypes}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/Customerlist" component={CustomerList}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Customerlist" component={CustomerList}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/Customerlist" component={CustomerList}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Customerlist" component={CustomerList}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='supplier') ?<Route  path="/supplier" component={Supplier}/>  :
+            {((localStorage.token)&&((localStorage.type)==='supplier')) ?<Route  path="/supplier" component={Supplier}/>  :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='supplier') ? <Route  path="/Addupcomingbook" component={Addupcomingbook}/> :
+            {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/Addupcomingbook" component={Addupcomingbook}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='supplier') ? <Route  path="/Editupcomingbook/:id" component={Editupcomingbook}/> :
+            {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/Editupcomingbook/:id" component={Editupcomingbook}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='supplier') ? <Route  path="/Removeupcomingbook" component={UpcomingBooklist}/> :
+            {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/Removeupcomingbook" component={UpcomingBooklist}/> :
              <Route path="/Error" component={Error} />}
               <Redirect from="/employeereg" to="/Error" />
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='employee') ? <Route  path="/updateprofile" component={Employeeprofile}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/updateprofile" component={Employeeprofile}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type))==='supplier') ? <Route  path="/updatesupplierprofile" component={Supplierprofile}/> :
+            {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/updatesupplierprofile" component={Supplierprofile}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Route  path="/editpassword/:id/:password" component={Passwordchange}/>
