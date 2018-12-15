@@ -8,6 +8,7 @@ const purchases = require('../controllers/purchases');
 const items = require('../controllers/items');
 const employee = require('../controllers/Employee');
 const upbooks = require('../controllers/upcomingbooks');
+const report = require('../controllers/history');
 const supplier = require('../controllers/supplier');
 
 
@@ -30,7 +31,7 @@ router.delete('/Reject/:id',purchases.purchremove);
 router.post('/Purchase', purchases.purchlist);
 router.post('/addPurch',purchases.newpurch);//http://localhost:4000/book/Supplierreg
 router.post('/Employeereg',employee.Employeeadd);//http://localhost:4000/book/Employeereg
-router.post('/Employeelog',employee.Employeelog);//http://localhost:4000/book/Supplierlog  
+router.post('/Employeelog',employee.Employeelog);//http://localhost:4000/book/getname 
 router.get('/employee/:token',employee.editdetail);
 router.put('/employeeupdate',employee.updatedetail);
 router.post('/forgetpwd',employee.mailverify);
@@ -40,6 +41,7 @@ router.post('/Supplierlog',supplier.Supplierlog);
 router.post('/upcomingaddimage',upbooks.addnewbook);
 router.get('/up/:id',upbooks.show);
 router.post('/addupcomingadd',upbooks.addbook);
+router.post('/getname',supplier.getname);
 router.put('/Updatenewbook/:id',upbooks.updatebooks);
 router.post('/UpcomingBooklist',upbooks.showbooks);
 router.delete('/Deleteupcoming/:id',upbooks.bookremove);
@@ -47,7 +49,9 @@ router.get('/supplier/:token',supplier.editdetail);
 router.put('/supplierupdate',supplier.updatedetail);
 router.put('/resetsuppwd/:id/:password',supplier.resetpwd);
 router.post('/forgetsuppwd',supplier.mailverify);
-/*router.post('/add',upbooks.addbook);//http://localhost:4000/book/Employeelog  http://localhost:4000/book/forgetpwd
+router.post('/bookreport',report.showbooks);
+router.post('/bookinsert',report.bookshow);
+/*router.post('/add',upbooks.addbook);//http://localhost:4000/book/Employeelog  http://localhost:4000/book/forgetpwd bookinsert
 router.post('/Booklist',upbooks.showbooks);
 router.post('/addimage',upbooks.addnewbook);
 router.post('/additem',upbooks.additem);

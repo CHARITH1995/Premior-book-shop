@@ -32,7 +32,7 @@ module.exports.addbook=(req,res,next)=>{
     var today = new Date();
     var num;
     var thismonth = today.getMonth()+1; //January is 0!
-    var thisyear = today.getYear()
+    var thisyear = today.today.getFullYear()
         books.findOne({
             name:req.body.name
         }).then(function(data){

@@ -128,13 +128,13 @@ class Editpassword extends Component {
                 <div className="container">
                     <form onSubmit={this.handleSubmit} name="inventry">
                     <div className="form-group col-md-8">
-                            <label htmlFor="exampleFormControlInput6">Password :</label>
-                            <input type="password" className="form-control" id="exampleFormControlInput6" name="password" placeholder="0000000000V" value={this.state.password} onChange={this.handleChange} />
+                            <label htmlFor="exampleFormControlInput6">Enter new Password :</label>
+                            <input type="password" className="form-control" id="exampleFormControlInput6" name="password" placeholder="enter yur new password" value={this.state.password} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.passworderr}</span>
                         </div>
                         <div className="form-group col-md-8">
                             <label htmlFor="exampleFormControlInput7">Comfirm Password :</label>
-                            <input type="password" className="form-control" id="exampleFormControlInput7" name="cmfpassword" placeholder="0000000000V" value={this.state.cmfpassword} onChange={this.handleChange} />
+                            <input type="password" className="form-control" id="exampleFormControlInput7" name="cmfpassword" placeholder="comfirm your new passowrd" value={this.state.cmfpassword} onChange={this.handleChange} />
                             <span style={{ color: "#FD6571" }}>{this.state.cmfpassworderr}</span>
                         </div>
                         <br /><br />
@@ -153,7 +153,6 @@ class Editpassword extends Component {
         })
     }
     render() {
-        if (localStorage.token) {
             return (
                 <div>
                     <div className="head">
@@ -209,5 +208,5 @@ class Editpassword extends Component {
             );
         }
     }
-}
+
 export default Editpassword;

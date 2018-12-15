@@ -152,7 +152,7 @@ class Employeeprofile extends Component {
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/#contact">CONTACT US</a></li>
-                                <li><a href="#services">DASHBOARD</a></li>
+                                <li><a href="/Employee">DASHBOARD</a></li>
                                 <li className="custname"><a href="/updateprofile">{localStorage.fname}</a></li>
                                 <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>

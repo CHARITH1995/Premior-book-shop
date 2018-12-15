@@ -133,7 +133,6 @@ class Forgetsuppassword extends Component {
         })
     }
     render() {
-        if (localStorage.token) {
             return (
                 <div>
                     <div className="head">
@@ -189,5 +188,5 @@ class Forgetsuppassword extends Component {
             );
         }
     }
-}
+
 export default Forgetsuppassword;

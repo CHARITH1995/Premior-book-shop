@@ -77,6 +77,23 @@ module.exports.editdetail = (req, res, next) => {
       }
     })
   }
+  module.exports.getname = (req, res, next) => {
+    jwt.verify(req.headers['authorization'], 'secretkey', (err, authorizedData) => {
+      if (err) {
+        console.log('ERROR: Could not connect to the protected route');
+        res.send({ success: false, msg: 'please log again' });
+      } else {
+        supplier.findOne({
+            _id:req.body.id
+        }).then(function(name){
+            if(name){
+            console.log(name.firstname)
+            return res.json(name.firstname)
+            }
+        })
+      }
+    })
+  }
   module.exports.updatedetail = (req, res, next) => {
     jwt.verify(req.headers['authorization'], 'secretkey', (err, authorizedData) => {
       if (err) {

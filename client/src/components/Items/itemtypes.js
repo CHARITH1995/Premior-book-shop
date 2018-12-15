@@ -44,7 +44,7 @@ class Itemtypes extends Component {
                         </div>
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href="/about">ABOUT</a></li>
+                                <li className="custname"><a href="#">{localStorage.fname}</a></li>
                                 {
                                     (localStorage.type ==='employee')?(
                                         <li><a href="/Employee">DASHBOARD</a></li>

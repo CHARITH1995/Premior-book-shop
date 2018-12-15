@@ -105,13 +105,9 @@ module.exports.editdetail = (req, res, next) => {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(req.body.password, salt);
     var pwd = req.params.password;
-    console.log(pwd)
-    console.log(hash)
     var myquery = { password: pwd }
     var newvalues = { $set: { _id: req.params.id, password: hash } };
     employee.updateOne(myquery, newvalues, function (err, doc) {
-        console.log(doc)
-        console.log(err)
       if (doc) {
         return res.json({ success: true, msg: 'successfully updated!' });
       } else {

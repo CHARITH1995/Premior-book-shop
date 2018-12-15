@@ -275,10 +275,8 @@ class Addbook extends Component {
                         </div>
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/Employee">DASHBOARD</a></li>
                                 <li className="custname"><a href="#">{localStorage.fname}</a></li>
-                                <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>
                     </div>

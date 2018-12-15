@@ -16,12 +16,12 @@ class Dashboard extends Component {
                         <div className="col-sm-4">
                             <a href="/Removeupcomingbook" className="glyphicon glyphicon-off logo-small"></a>
                             <h4>MODIFY DETAILS</h4>
-                            <p>Edit or Delete books details</p>
+                            <p>Edit or Delete upcoming books details</p>
                         </div>
                         <div className="row slideanim">
                         <div className="col-sm-4">
-                            <a href="/" className="glyphicon glyphicon-signal logo-small"></a>
-                            <h4>VIEW STATISTICS</h4>
+                            <a href="/history" className="glyphicon glyphicon-signal logo-small"></a>
+                            <h4>MONTH RESULTS</h4>
                             <p>view sells,new books,stocks</p>
                         </div>
                         <br /><br />

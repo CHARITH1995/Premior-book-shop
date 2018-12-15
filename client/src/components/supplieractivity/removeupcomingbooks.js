@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Image, Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../Books/removebooks.css';
-import Navbar from './navbar';
 import Contact from '../contact';
 
 class UpcomingBooklist extends Component {
@@ -14,6 +13,8 @@ class UpcomingBooklist extends Component {
             loading: true,
             loadingmsg: '',
             msg: '',
+            is_Mount:true,
+            supname:'',
             showsuc: false,
             showerr: false,
         };
@@ -72,11 +73,66 @@ class UpcomingBooklist extends Component {
                 }
             })
     }
+    getname(id){
+        var authToken = localStorage.token;
+        const name ={
+            id:id
+        }
+        //e.preventDefault();
+        if(this.state.is_Mount){
+        fetch("http://localhost:4000/book/getname", {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                'authorization': authToken
+            },
+            body: JSON.stringify(name)
+        }).then(result => result.json())
+            .then(json => {
+                //alert(json)
+                this.setState({
+                    supname:json
+                })
+            })
+            
+        }
+        return this.state.supname
+    }
+    navbar() {
+        return (
+            <div>
+                <nav className="navbar navbar-default navbar-fixed-top">
+                    <div className="container">
+                        <div className="navbar-header">
+                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                            </button>
+                            <a className="navbar-brand" href="#myPage">PREMIER</a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="myNavbar">
+                            <ul className="nav navbar-nav navbar-right">
+                                <li><a href="/about">ABOUT</a></li>
+                                {
+                                    (localStorage.type ==='employee')?(
+                                        <li><a href="/Employee">DASHBOARD</a></li>
+                                    ):(
+                                        <li><a href="/supplier">DASHBOARD</a></li>
+                                    )
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        );
+    }
     render() {
         return (
             <div>
                 <div className="head">
-                    <Navbar />
+                    {this.navbar()}
                 </div>
                 <div className="container-fluid">
                     <h2 className="tit">Books Details</h2>

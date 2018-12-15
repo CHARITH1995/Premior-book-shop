@@ -64,6 +64,11 @@ const Books= new Schema({
         type:Number,
         require:'price is required'
     },
+    solddate:{
+        type:Date,
+        required:'date field is required'
+
+    }
 
 });
  module.exports=mongoose.model('Books',Books);

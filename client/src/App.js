@@ -25,6 +25,7 @@ import Forgetpassword from './components/employeelogin/profile/forgetpwd';
 import Supplierprofile from './components/supplier/profile/supplierupdate';
 import Suppasswordchange from './components/supplier/profile/passwordedit';
 import Forgetsuppassword from './components/supplier/profile/forgetpwd';
+import Report from './components/supplieractivity/history';
 import Error from './components/error';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
@@ -86,7 +87,7 @@ class App extends Component {
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/Removeupcomingbook" component={UpcomingBooklist}/> :
+            {(((localStorage.token)&&((localStorage.type)==='employee'))||((localStorage.token)&&((localStorage.type))==='supplier')) ? <Route  path="/Removeupcomingbook" component={UpcomingBooklist}/> :
              <Route path="/Error" component={Error} />}
               <Redirect from="/employeereg" to="/Error" />
         </Switch>
@@ -98,10 +99,11 @@ class App extends Component {
             {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/updatesupplierprofile" component={Supplierprofile}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
+        <Route  path="/history" component={Report}/>
         <Route  path="/editpassword/:id/:password" component={Passwordchange}/>
+        <Route  path="/forgetpassword" component={Forgetpassword}/>
         <Route  path="/editsupplierpassword/:id/:password" component={Suppasswordchange}/>
         <Route  path="/forgetsuppassword" component={Forgetsuppassword}/>
-        <Route  path="/forgetpassword" component={Forgetpassword}/>
         <Route  path="/employeelog" component={Employeelogin}/>
         <Route  path="/supplierregister" component={Supplierregister}/>
         <Route  path="/supplierlog" component={Supplierlogin}/> 

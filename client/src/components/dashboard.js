@@ -27,8 +27,8 @@ class Dashboard extends Component {
                     <br /><br />
                     <div className="row slideanim">
                         <div className="col-sm-4">
-                            <a href="/" className="glyphicon glyphicon-signal logo-small"></a>
-                            <h4>VIEW STATISTICS</h4>
+                            <a href="/Removeupcomingbook" className="glyphicon glyphicon-signal logo-small"></a>
+                            <h4>SHOW UPCOMING ITEMS</h4>
                             <p>view sells,new books,stocks</p>
                         </div>
                         <div className="col-sm-4">

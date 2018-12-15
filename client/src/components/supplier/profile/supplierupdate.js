@@ -76,24 +76,6 @@ class Supplierprofile extends Component {
                 formvalid = false
             }
         }
-        if (this.state.email !== 'undefined') {
-            if (!this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-                this.setState({
-                    emailerr: 'email invalid!',
-                })
-                formvalid = false
-            }
-        }
-        
-        if (this.state.id !== 'undefined') {
-            if (!this.state.id.match(/^[1-9]{9}[vVxX]$/i)) {
-                this.setState({
-                    Iderr: 'NIC invalid!',
-
-                })
-                formvalid = false
-            }
-        }
         return formvalid
     }
     handleSubmit(e) {
@@ -152,9 +134,8 @@ class Supplierprofile extends Component {
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/#contact">CONTACT US</a></li>
-                                <li><a href="#services">DASHBOARD</a></li>
+                                <li><a href="/supplier">DASHBOARD</a></li>
                                 <li className="custname"><a href="/updatesupplierprofile">{localStorage.fname}</a></li>
-                                <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>
                     </div>

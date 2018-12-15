@@ -98,7 +98,7 @@ class Addupcomingbook extends Component {
                 supid:localStorage.id,
                 publisher: this.state.publisher,
             }
-            console.log(book)
+           // console.log(book)
             fetch("http://localhost:4000/book/upcomingaddimage", {
             method: "POST",
             mode: 'no-cors',

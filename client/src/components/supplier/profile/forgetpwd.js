@@ -57,9 +57,9 @@ class Forgetsuppassword extends Component {
                         </div>
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
+                            <li><a href="/">HOME</a></li>
                                 <li><a href="/about">ABOUT</a></li>
-                                <li><a href="/#contact">CONTACT US</a></li>
-                                
+                                <li><a href="/#contact">CONTACT US</a></li>  
                             </ul>
                         </div>
                     </div>
