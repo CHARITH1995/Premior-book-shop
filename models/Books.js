@@ -40,6 +40,11 @@ const Books= new Schema({
         type:Number,
         require:'Qty is required'
     },
+    soldQty:{
+        type:Number,
+        default:0,
+        require:'Qty is required'
+    },
     type:{
         type:String,
         require:'Type is required'
@@ -47,10 +52,6 @@ const Books= new Schema({
     price:{
         type:Number,
         require:'price is required'
-    },
-    Status:{
-        type:String,
-        default:"unsold"
     },
     inserteddate:{
         type:Date,
@@ -64,11 +65,6 @@ const Books= new Schema({
         type:Number,
         require:'price is required'
     },
-    solddate:{
-        type:Date,
-        required:'date field is required'
-
-    }
 
 });
  module.exports=mongoose.model('Books',Books);

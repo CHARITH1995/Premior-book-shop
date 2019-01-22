@@ -35,12 +35,7 @@ class App extends Component {
     return (
       <Router>
          <div>
-        <Route exact path="/" component={Home}/>  
-        <Switch>
-            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/employee" component={Employee}/> :
-             <Route path="/Error" component={Error} />}
-              <Redirect from="/employeereg" to="/Error" />
-        </Switch>
+        <Route exact path="/" component={Home}/>
         <Switch>
             {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Addbooks" component={Addbooks}/> :
              <Route path="/Error" component={Error} />}
@@ -50,9 +45,8 @@ class App extends Component {
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
-            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/employeereg" component={Employeeregister}/> :
+            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/employee" component={Employee}/> :
              <Route path="/Error" component={Error} />}
-            <Redirect from="/employeereg" to="/Error" />
         </Switch>
         <Switch>
             {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Purchase" component={Purchase}/> :
@@ -99,6 +93,7 @@ class App extends Component {
             {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/updatesupplierprofile" component={Supplierprofile}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
+        <Route  path="/employeereg" component={Employee}/>
         <Route  path="/history" component={Report}/>
         <Route  path="/editpassword/:id/:password" component={Passwordchange}/>
         <Route  path="/forgetpassword" component={Forgetpassword}/>

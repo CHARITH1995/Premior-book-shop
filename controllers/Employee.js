@@ -6,11 +6,9 @@ const bcrypt = require('bcrypt');
 var nodemailer = require('nodemailer');
 
 module.exports.Employeelog = (req, res, next) => {
-    //console.log(req.body.email)
     employee.findOne({
         email: req.body.email
     }, function (err, user) {
-        //console.log(user)
         if (!user) {
             return res.json({ success: false, msg: 'Authentication fail , User not found' })
         } else {
@@ -24,11 +22,11 @@ module.exports.Employeelog = (req, res, next) => {
     });
 }
 module.exports.Employeeadd = (req, res, next) => {
-    jwt.verify(req.headers['authorization'], 'secretkey', (err, authorizedData) => {
-        if (err) {
-            console.log('ERROR: Could not connect to the protected route');
-            res.send({ success: false, msg: 'please log again' });
-        } else {
+    // jwt.verify(req.headers['authorization'], 'secretkey', (err, authorizedData) => {
+    //     if (err) {
+    //         console.log('ERROR: Could not connect to the protected route');
+    //         res.send({ success: false, msg: 'please log again' });
+    //     } else {
             employee.findOne({
                 email: req.body.email
             }).then(function (data) {
@@ -67,8 +65,8 @@ module.exports.Employeeadd = (req, res, next) => {
                     });
                 }
             });
-        }
-    });
+       // }
+   // });
 
 }
 module.exports.editdetail = (req, res, next) => {
@@ -102,21 +100,29 @@ module.exports.editdetail = (req, res, next) => {
     })
   }
   module.exports.resetpwd = (req, res, next) => {
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(req.body.password, salt);
-    var pwd = req.params.password;
-    var myquery = { password: pwd }
-    var newvalues = { $set: { _id: req.params.id, password: hash } };
-    employee.updateOne(myquery, newvalues, function (err, doc) {
-      if (doc) {
-        return res.json({ success: true, msg: 'successfully updated!' });
-      } else {
-        return res.json({ success: false, msg: 'cannot finish your request!!' });
-      }
-    });
-  }
+    employee.findOne({
+       _id:req.params.id
+     }).then(function(doc){
+       if(doc){
+         var salt = bcrypt.genSaltSync(10);
+         var hash = bcrypt.hashSync(req.body.password, salt);
+         var pwd = doc.password;
+         var myquery = { password: pwd }
+         var newvalues = { $set: { _id: req.params.id, password: hash } };
+         employee.updateOne(myquery, newvalues, function (err, doc) {
+           if (doc) {
+             return res.send({ success: true, msg: 'successfully updated!' });
+           } else {
+             return res.send({ success: false, msg: 'ERROR!' });
+           }
+         });
+     }else{
+       return res.json({success:false,msg:'User Not FOUND!'})
+     }
+     })
+    
+   }
   module.exports.mailverify = (req, res, next) => {
-    // console.log(req.body.email)
     employee.findOne({
       email: req.body.email
     }, function (err, infor) {
@@ -151,6 +157,13 @@ module.exports.editdetail = (req, res, next) => {
       }
     })
   }//resetpwd
+  module.exports.getpwd = (req, res, next) => {
+    employee.findOne({
+      _id:req.body.id
+    }).then(function(details){
+      return res.json({data:details})
+    })
+}
   
 
 //

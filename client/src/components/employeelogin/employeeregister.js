@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
-//import { Link } from 'react-router-dom';
 import './employeelogin.css';
 
 class Employeeregister extends Component {
@@ -72,7 +71,7 @@ class Employeeregister extends Component {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    'authorization': authToken
+                   // 'authorization': authToken
                 },
                 body:JSON.stringify(employee)
             }).then(res => res.json())
@@ -253,7 +252,7 @@ class Employeeregister extends Component {
                     <div className="head">
                     {this.navbar()}
                     </div>
-                    <h3 className="title">NEW-EMPLOYEE</h3>
+                    <h2 className="title">NEW-EMPLOYEE</h2>
                     <div className="container">
                         <div className="row content">
                             <hr />

@@ -141,7 +141,7 @@ class Forgetsuppassword extends Component {
                     <div className="container-fluid">
                         <h3 className="title">Enter your Email</h3>
                         <div className="row content">
-                        <div className="middle">
+                        <div className="middleS">
                         <div className="col-md-3">
                             </div>
                             <div className="col-md-8">

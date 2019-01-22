@@ -32,7 +32,7 @@ module.exports.addbook=(req,res,next)=>{
     var today = new Date();
     var num;
     var thismonth = today.getMonth()+1; //January is 0!
-    var thisyear = today.today.getFullYear()
+    var thisyear = today.getFullYear()
         books.findOne({
             name:req.body.name
         }).then(function(data){
@@ -50,13 +50,13 @@ module.exports.addbook=(req,res,next)=>{
                     price:req.body.price,
                     Publisher: req.body.publisher,
                     imagename:req.body.imagename,
-                    Qty: req.body.qty,
+                    Qty:req.body.qty,
                     inserteddate:today,
                     month:thismonth,
                     year:thisyear
                 });
                 Books.save((err, doc) => {
-                    console.log(doc)
+                    console.log(err)
                     if (!err) {
                         res.json({ success: true,msg:'successfully inserted!!' });
                     } else {
@@ -67,7 +67,7 @@ module.exports.addbook=(req,res,next)=>{
         })        
 }
 module.exports.showbooks=(req,res,next)=>{
-    books.aggregate([{ $match:{Status:"unsold"} }]).then(function (details) {
+    books.aggregate([{ $match: { Qty: { $gt: 0 } } }]).then(function (details) {
         if(details.length == 0){
             return res.json({success:false,msg:'nothing to show'})
         }else{

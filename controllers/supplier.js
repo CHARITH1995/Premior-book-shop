@@ -114,26 +114,34 @@ module.exports.editdetail = (req, res, next) => {
     })
   }
   module.exports.resetpwd = (req, res, next) => {
-    var salt = bcrypt.genSaltSync(10);
-    var hash = bcrypt.hashSync(req.body.password, salt);
-    var pwd = req.params.password;
-    var myquery = { password: pwd }
-    var newvalues = { $set: { _id: req.params.id, password: hash } };
-    supplier.updateOne(myquery, newvalues, function (err, doc) {
-      if (doc) {
-        return res.json({ success: true, msg: 'successfully updated!' });
-      } else {
-        return res.json({ success: false, msg: 'cannot finish your request!!' });
-      }
-    });
+   supplier.findOne({
+      _id:req.params.id
+    }).then(function(doc){
+      if(doc){
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(req.body.password, salt);
+        var pwd = doc.password;
+        var myquery = { password: pwd }
+        var newvalues = { $set: { _id: req.params.id, password: hash } };
+        supplier.updateOne(myquery, newvalues, function (err, doc) {
+          if (doc) {
+            return res.send({ success: true, msg: 'successfully updated!' });
+          } else {
+            return res.send({ success: false, msg: 'ERROR!' });
+          }
+        });
+    }else{
+      return res.json({success:false,msg:'User Not FOUND!'})
+    }
+    })
+   
   }
   module.exports.mailverify = (req, res, next) => {
-    // console.log(req.body.email)
     supplier.findOne({
       email: req.body.email
     }, function (err, infor) {
-      if (infor) {   ///resetpwd/:id/:password
-        link ='http://localhost:3000/editpassword/'+ infor._id +'/'+infor.password;
+      if (infor) { 
+        link ='http://localhost:3000/editsupplierpassword/'+ infor._id +'/'+infor.password;
         console.log(link)
         var transporter = nodemailer.createTransport({
           service: 'gmail',
@@ -163,6 +171,14 @@ module.exports.editdetail = (req, res, next) => {
       }
     })
   }//resetpwd
+  module.exports.getpwd = (req, res, next) => {
+    supplier.findOne({
+      _id:req.body.id
+    }).then(function(details){
+      console.log(details)
+      return res.json({data:details})
+    })
+}
   
 
 //

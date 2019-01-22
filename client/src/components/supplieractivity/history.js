@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table , Panel} from 'react-bootstrap';
+import {Table , Panel ,  ProgressBar} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './history.css';
 
@@ -124,7 +124,7 @@ class Reports extends Component {
                                             <td>{book.name}</td>
                                             <td>{book.inserteddate}</td>
                                             <td>{book.type}</td>
-                                            <td>{book.Qty}</td>
+                                            <td>{book.Qty}<ProgressBar striped bsStyle="success" now={book.Qty} label={`${book.Qty}`} /></td>
                                         </tr>
                                     )}
                                 </tbody>
@@ -161,7 +161,7 @@ class Reports extends Component {
                                     this.state.items.map(item =>
                                         <tr>
                                             <td>{item._id.type}</td>
-                                            <td>{item.total}</td>
+                                            <td>{item.total}<ProgressBar striped bsStyle="success" now={item.total} label={`${item.total}`} /></td>
                                         </tr>
                                     )}
                                 </tbody>
@@ -185,34 +185,6 @@ class Reports extends Component {
                     {this.navbar()}
                 </div>
                 <div className="container-fluid">
-                    {/* {
-                                        this.state.showsuc ? (
-                                            <div className="message">
-                                                <Panel bsStyle="success" className="text-center">
-                                                    <Panel.Heading>
-                                                        <Panel.Title componentClass="h3">{this.state.msg}</Panel.Title>
-                                                    </Panel.Heading>
-                                                </Panel>
-                                            </div>
-                                        ) : (
-                                                <div>
-                                                </div>
-                                            )
-                                    }
-                                    {
-                                        this.state.showerr ? (
-                                            <div className="message text-center">
-                                                <Panel bsStyle="danger" className="table">
-                                            <Panel.Heading>
-                                                <Panel.Title componentClass="h3">{this.state.msg}</Panel.Title>
-                                            </Panel.Heading>
-                                        </Panel>
-                                            </div>
-                                        ) : (
-                                                <div>
-                                                </div>
-                                            )
-                                    } */}
                 <div>
                 <div className="col-sm-2 sidenavs">
                             <div className="list-group ">

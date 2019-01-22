@@ -10,6 +10,7 @@ class Editpassword extends Component {
             cmfpassword:'',
             passworderr:'',
             cmfpassworderr:'',
+            oldpassword:'',
             msg:'',
             show:false,
             showerr:false,
@@ -61,15 +62,32 @@ class Editpassword extends Component {
                         </div>
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
-                                <li><a href="/about">ABOUT</a></li>
-                                <li><a href="/#contact">CONTACT US</a></li>
-                                
+                                <li><a href="/employeelog">SIGNIN</a></li>  
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         );
+    }
+    componentDidMount() {
+        const id={
+            id:this.props.match.params.id
+        }
+        fetch("http://localhost:4000/book/getemppwd", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(id)
+        }).then(function (response) {
+            return response.json();
+        }).then(detail => {
+            this.setState({
+                oldpassword:detail.data.password,
+            });
+            console.log(this.state.oldpassword)
+        });
     }
   
     handleSubmit(e) {
@@ -153,6 +171,7 @@ class Editpassword extends Component {
         })
     }
     render() {
+        if((this.state.oldpassword.indexOf(this.props.match.params.password))>=0){
             return (
                 <div>
                     <div className="head">
@@ -161,7 +180,7 @@ class Editpassword extends Component {
                     <div className="container-fluid">
                         <h3 className="title">Change Profile Password</h3>
                         <div className="row content">
-                        <div className="middle">
+                        <div className="middles">
                         <div className="col-md-3">
                             </div>
                             <div className="col-md-8">
@@ -206,6 +225,29 @@ class Editpassword extends Component {
                     </div>
                 </div>
             );
+        }else{
+            return(
+              <div>
+              <div className="head">
+                  {this.navbar()}
+              </div>
+              <div className="container-fluid">
+                  <h3 className="title">Change Profile Password</h3>
+                  <div className="row content">
+                  <div className="middle">
+                      <div className="col-md-8">
+                      <Panel bsStyle="danger" className="text-center">
+                          <Panel.Heading>
+                            <Panel.Title componentClass="h3">Link Expired!!</Panel.Title>
+                          </Panel.Heading>
+                        </Panel>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+            )
+          }
         }
     }
 

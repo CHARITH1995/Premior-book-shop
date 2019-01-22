@@ -125,6 +125,7 @@ class Employeelogin extends Component {
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/">HOME</a></li>
+                                <li><a href="/employeelog">SignIn</a></li>
                             </ul>
                         </div>
                     </div>
@@ -163,7 +164,7 @@ class Employeelogin extends Component {
                     <div className="head">
                     {this.navbar()}
                     </div>
-                    <h3 className="title">EMPLOYEE-LOGGING</h3>
+                    <h2 className="title">EMPLOYEE-LOGGING</h2>
                     <div className="container">
                         <div className="row content">
                             <hr />
@@ -214,6 +215,7 @@ class Employeelogin extends Component {
                     <hr />
                 </div>
             );
-    }
+    
+}
 }
 export default withRouter(Employeelogin);

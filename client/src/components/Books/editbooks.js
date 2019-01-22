@@ -280,7 +280,6 @@ class Editbook extends Component {
                                 <li><a href="/about">ABOUT</a></li>
                                 <li><a href="/Employee">DASHBOARD</a></li>
                                 <li><a href="/Booklist">BOOKLIST</a></li>
-                                <li className="custname"><a href="#">{localStorage.fname}</a></li>
                                 <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
                             </ul>
                         </div>

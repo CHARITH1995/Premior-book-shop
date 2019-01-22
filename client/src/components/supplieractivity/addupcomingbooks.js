@@ -78,6 +78,30 @@ class Addupcomingbook extends Component {
             });
             console.log(this.state.items)
     }
+    nav() {
+        return (
+            <div>
+                <nav className="navbar navbar-default navbar-fixed-top">
+                    <div className="container">
+                        <div className="navbar-header">
+                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                                <span className="icon-bar"></span>
+                            </button>
+                            <a className="navbar-brand" href="#myPage">PREMIER</a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="myNavbar">
+                            <ul className="nav navbar-nav navbar-right">
+                                <li><a href="/supplier">DASHBOARD</a></li>
+                                <li><a href="#" onClick={this.logout}>LOGOUT</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        );
+    }
     handleSubmit(e) {
         e.preventDefault();
         var authToken = localStorage.token;
@@ -254,7 +278,7 @@ class Addupcomingbook extends Component {
         return (
             <div>
                 <div className="head">
-                <Navbar />
+                {this.nav()}
                 </div>
                 <div className="container-fluid text-center">
                     <div className="row content">

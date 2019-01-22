@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
-import { Image, Panel } from 'react-bootstrap';
+import { Image, Panel , ProgressBar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './removebooks.css';
 import Contact from '../contact';
@@ -93,7 +93,6 @@ class Booklist extends Component {
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/Employee">DASHBOARD</a></li>
-                                <li className="custname"><a href="/updatesupplierprofile">{localStorage.fname}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -154,7 +153,7 @@ class Booklist extends Component {
                                                     <li><span className="attribute">DESCRIPTION : </span>{book.description}</li>
                                                     <li><span className="attribute">PUBLISH YEAR : </span>{book.PublishYear}</li>
                                                     <li><span className="attribute">PUBLISHER : </span>{book.Publisher}</li>
-                                                    <li><span className="attribute">AVAILABLE STOCK : </span>{book.Qty}</li>
+                                                    <li><span className="attribute">AVAILABLE STOCK : </span>{book.Qty}<ProgressBar striped bsStyle="success" now={book.Qty} label={`${book.Qty}`} /></li>
                                                     <li><span className="attribute">PRICE : Rs. </span>{book.price} /=</li>
                                                     <li><span className="attribute">TYPE : </span>{book.type}</li>
                                                     <li><span className="attribute">AUTHORIZED BY : </span>{book.empname}</li>
