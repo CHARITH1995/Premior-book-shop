@@ -125,7 +125,7 @@ class Editbook extends Component {
                 imagename: this.state.image,
                 price:this.state.price,
                 publisher: this.state.publisher,
-                qty: this.state.qty
+                Qty: this.state.qty
             }
             console.log(book)
         fetch("http://localhost:4000/book/Update/"+this.props.match.params.id, {
@@ -205,7 +205,7 @@ class Editbook extends Component {
                         <div className="form-group">
                             <label className="control-label col-sm-2" for="pwd">Quantity :</label>
                             <div className="col-sm-8">
-                                <input type="number" className="form-control" id="qty" placeholder="Enter book quantity" name="Qty" value={this.state.qty} onChange={this.handleChange}  required/>
+                                <input type="number" className="form-control" id="qty" placeholder="Enter book quantity" name="qty" value={this.state.qty} onChange={this.handleChange}  required/>
                             </div>
                         </div>
                         <div className="form-group">

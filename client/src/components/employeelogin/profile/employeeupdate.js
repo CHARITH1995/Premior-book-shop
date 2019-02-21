@@ -76,39 +76,20 @@ class Employeeprofile extends Component {
                 formvalid = false
             }
         }
-        if (this.state.email !== 'undefined') {
-            if (!this.state.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
-                this.setState({
-                    emailerr: 'email invalid!',
-                })
-                formvalid = false
-            }
-        }
         
-        if (this.state.id !== 'undefined') {
-            if (!this.state.id.match(/^[1-9]{9}[vVxX]$/i)) {
-                this.setState({
-                    Iderr: 'NIC invalid!',
-
-                })
-                formvalid = false
-            }
-        }
         return formvalid
     }
     handleSubmit(e) {
         var authToken = localStorage.token;
         e.preventDefault();
         if (this.handleValidation()) {
+            console.log("hello")
             const user = {
                 firstname: this.state.fname,
                 lastname: this.state.lname,
-               // email:this.state.email,
                 tp:this.state.tp,
-                //id:this.state.id,
                 _id:this.state._id,
             }
-            console.log(user)
             fetch("http://localhost:4000/book/employeeupdate", {
                 method: "PUT",
                 headers: {
@@ -176,8 +157,6 @@ class Employeeprofile extends Component {
             this.setState({
                 fname: detail.data.firstname,
                 lname: detail.data.lastname,
-                //email: detail.data.email,
-                //id: detail.data.id,
                 tp: detail.data.tp,
                 _id:detail.data._id,
                 password:detail.data.password

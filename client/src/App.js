@@ -35,7 +35,8 @@ class App extends Component {
     return (
       <Router>
          <div>
-        <Route exact path="/" component={Home}/>
+        {/* <Route exact path="/" component={Home}/> */}
+        <Route  exact path="/" component={Employeelogin}/>
         <Switch>
             {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Addbooks" component={Addbooks}/> :
              <Route path="/Error" component={Error} />}
@@ -58,10 +59,6 @@ class App extends Component {
         </Switch>
         <Switch>
             {(((localStorage.token)&&((localStorage.type)==='employee'))||((localStorage.token)&&((localStorage.type))==='supplier')) ? <Route  path="/items" component={Itemtypes}/> :
-             <Route path="/Error" component={Error} />}
-        </Switch>
-        <Switch>
-            {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Customerlist" component={CustomerList}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
         <Switch>
@@ -93,13 +90,12 @@ class App extends Component {
             {((localStorage.token)&&((localStorage.type)==='supplier')) ? <Route  path="/updatesupplierprofile" component={Supplierprofile}/> :
              <Route path="/Error" component={Error} />}
         </Switch>
-        <Route  path="/employeereg" component={Employee}/>
+        <Route  path="/employeereg" component={Employeeregister}/>
         <Route  path="/history" component={Report}/>
         <Route  path="/editpassword/:id/:password" component={Passwordchange}/>
         <Route  path="/forgetpassword" component={Forgetpassword}/>
         <Route  path="/editsupplierpassword/:id/:password" component={Suppasswordchange}/>
         <Route  path="/forgetsuppassword" component={Forgetsuppassword}/>
-        <Route  path="/employeelog" component={Employeelogin}/>
         <Route  path="/supplierregister" component={Supplierregister}/>
         <Route  path="/supplierlog" component={Supplierlogin}/> 
         <Route  path="/About" component={About}/>

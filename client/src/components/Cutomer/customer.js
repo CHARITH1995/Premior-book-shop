@@ -54,9 +54,6 @@ class Customerlist extends Component {
                     })
                 }
             })
-
-
-
     }
 
       navbar() {
@@ -124,8 +121,6 @@ class Customerlist extends Component {
                             )
                     }
                         </div>
-
-
                     </div>
                 </div>
             </div>
