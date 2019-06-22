@@ -43,7 +43,8 @@ class Items extends Component {
         .then(json => {
             if(json.success){
                 sessionStorage.setItem('token',json.token);
-                localStorage.setItem('name',json.name)
+                localStorage.setItem('name',json.name);
+                localStorage.setItem('id',json.id);
                 this.props.history.push("/Customerhome");
             }
         });

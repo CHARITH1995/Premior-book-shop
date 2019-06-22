@@ -53,6 +53,11 @@ router.put('/resetsuppwd/:id/:password',supplier.resetpwd);
 router.post('/forgetsuppwd',supplier.mailverify);
 router.post('/bookreport',report.showbooks);
 router.post('/bookinsert',report.bookshow);
+
+router.post('/addCart/:id',customers.addCart);//getCartBooks
+router.get('/getCartData/:customerId',customers.getCartBooks);
+router.delete('/removeFromCart/:bookId/:customerId',customers.removeBooksFromCart);
+router.post('/Customerreg',customers.Customeradd);
 /*router.post('/add',upbooks.addbook);//http://localhost:4000/book/Employeelog  http://localhost:4000/book/forgetpwd bookinsert
 router.post('/Booklist',upbooks.showbooks);
 router.post('/addimage',upbooks.addnewbook);

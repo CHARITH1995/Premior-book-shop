@@ -27,6 +27,8 @@ import Suppasswordchange from './components/supplier/profile/passwordedit';
 import Forgetsuppassword from './components/supplier/profile/forgetpwd';
 import Report from './components/supplieractivity/history';
 import Error from './components/error';
+import Cart from './components/cart/cart';
+import CustomerRegister from './components/Cutomer/register'
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
@@ -35,8 +37,8 @@ class App extends Component {
     return (
       <Router>
          <div>
-        {/* <Route exact path="/" component={Home}/> */}
-        <Route  exact path="/" component={Employeelogin}/>
+        <Route exact path="/" component={Home}/>
+        {/* <Route  exact path="/" component={Employeelogin}/> */}
         <Switch>
             {((localStorage.token)&&((localStorage.type)==='employee')) ? <Route  path="/Addbooks" component={Addbooks}/> :
              <Route path="/Error" component={Error} />}
@@ -102,6 +104,8 @@ class App extends Component {
         <Route  path="/Customerhome" component={Customerlog}/>
         <Route  path="/Customerview/:id" component={Customerview}/>
         <Route  path="/view/:id" component={View}/>  
+        <Route  path="/cart/:customerId" component={Cart}/>
+        <Route  path="/register" component={CustomerRegister}/>
       </div>
        </Router>
      

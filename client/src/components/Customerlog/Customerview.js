@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link , withRouter} from "react-router-dom";
 //import { Image, Panel } from 'react-bootstrap';
 import './Customerview.css';
 
@@ -7,30 +8,41 @@ class Customerview extends Component {
         super(props);
         this.state = {
             book: [],
+            qty:''
         };
-
+        this.handleChange = this.handleChange.bind(this);
     }
+
+    handleChange(e) {
+        let target = e.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value
+        let name = target.name;
+        this.setState({
+            [name]: value,
+        });
+    }
+
     purch(id) {
-        //var authToken = localStorage.token;
-        console.log(id);
-        fetch("http://localhost:4000/book/purch/"+id, {
-            method: "DELETE",
+        var customerId = JSON.stringify(localStorage.getItem('id'))
+        const customer = {
+            customerId:customerId,
+            bookId:id,
+            bookName:this.state.book.name,
+            qty:this.state.qty,
+            description:this.state.book.description
+        }
+        fetch("http://localhost:4000/book/addCart/"+id, {
+            method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
+            body:JSON.stringify(customer)
         }).then(result => result.json())
             .then(json => {
-                if (json.success) {
-                    console.log(json)
-                    window.location.reload();
-
-                } else {
-                    console.log(json)
-                }
+                this.props.history.push("/Cart/"+customerId);
             })
     }
     componentDidMount() {
-        //var authToken = localStorage.token;
         fetch("http://localhost:4000/book/Customerview/"+this.props.match.params.id, {
             method: "GET",
             headers: {
@@ -98,17 +110,15 @@ class Customerview extends Component {
                                     <li><span className="attribute">PUBLISH YEAR : </span>{this.state.book.PublishYear}</li>
                                     <li><span className="attribute">PUBLISHER : </span>{this.state.book.Publisher}</li>
                                     <li><span className="attribute">AVAILABLE STOCK : </span>{this.state.book.Qty}</li>
-                                    <form>
                                         <div className="form-group">
                                             <label className="control-labels col-sm-2" for="pwd">QTY :</label>
                                             <div className="qtyfield col-sm-4">
                                                 <input type="number" className="form-control" id="qty" placeholder=" Enter Purchasing Quantity" name="qty" value={this.state.qty} onChange={this.handleChange} required />
                                             </div>
                                         </div>
-                                        <div className="buttonlists">
-                                            <button className="btn btn-success" /*onClick={this.purch.bind(this, this.state.book._id)}*/>BUY</button>
+                                    <div className="buttonlist">
+                                            <button className="btn btn-success" style={{width:150}} onClick={this.purch.bind(this,this.state.book._id)}>ADD TO CART</button>
                                         </div>
-                                    </form>
                                 </ul>
                                 <hr />
                             </div>
@@ -119,4 +129,4 @@ class Customerview extends Component {
         );
     }
 }
-export default Customerview;
+export default withRouter(Customerview);

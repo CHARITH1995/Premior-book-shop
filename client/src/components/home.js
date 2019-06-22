@@ -20,7 +20,8 @@ class Home extends Component{
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li><a href="/about">ABOUT</a></li>
-                                <li><a href="/#contact">CONTACT US</a></li>  
+                                <li><a href="/#contact">CONTACT US</a></li>
+                                <li><a href="/register">SIGN UP</a></li>  
                             </ul>
                         </div>
                     </div>
